@@ -67,7 +67,7 @@ svg circle{
     background-size: contain;
     background-repeat: no-repeat;
     height: 90px;
-    width: auto;
+    width: 100%;
     position: absolute;
     top: 0;
     left:-240px;
