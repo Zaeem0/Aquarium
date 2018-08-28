@@ -5,6 +5,70 @@ body{
 #aquarium {
     height: 100vh;
     width: 100%;
-    background-color: #03a9f4;
+    /*background-color: #03a9f4;*/
     position: absolute;
+    z-index: -1;
+    overflow: hidden;
+    background-image: url('../img/bg.jpg');
+    background-size: cover;
+}
+
+#chest{
+    width: 260px;
+    height: 180px;
+    background-color: #914a00;
+}
+
+#bubble-container{
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+}
+
+svg circle{
+    fill: #0cb1fc;
+    stroke: #4b8ffd;
+    stroke-width: 1px;
+}
+
+@keyframes show {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
+@keyframes move {
+  0% {
+    left: 0px;
+  }
+  100% {
+    left: 1400px;
+  }
+}
+
+
+.bubble{
+    width: auto;
+    height: 60px;
+    left: 500px;
+    position: absolute;
+    bottom: -70px;
+}
+
+#bubble-container{
+    z-index: 9999;
+}
+
+.fish {
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 90px;
+    width: auto;
+    position: absolute;
+    top: 0;
+    left:-240px;
 }
