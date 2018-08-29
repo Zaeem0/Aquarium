@@ -59,7 +59,7 @@ svg circle{
     bottom: -70px;
 }
 
-#bubble-container{
+.bubble-container{
     z-index: 9999;
 }
 

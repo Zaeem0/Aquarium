@@ -1,3 +1,4 @@
+
 function createBubbles(){
     var bubble = document.createElement('img');
 
@@ -18,7 +19,7 @@ function createBubbles(){
 
 function createRandomFishElement(){
     var fishImageList = ["bluefish.png", "purplefish.png"];
-    
+
     var newFish = document.createElement('div');
     newFish.className = "fish";
 
@@ -32,7 +33,6 @@ function createRandomFishElement(){
 }
 
 function addFish(newFish){
-    var aquarium = document.getElementById('aquarium');
     aquarium.appendChild(newFish);
 
     //newFish.className += " active";
@@ -57,19 +57,24 @@ function addFish(newFish){
 
 }
 
+var aquarium = document.getElementById('aquarium');
+var bubbleContainer = document.createElement('div');
+bubbleContainer.classList.add("bubble-container");
+aquarium.appendChild(bubbleContainer);
+
 setInterval(function() {
   addFish(createRandomFishElement());
 }, 100);
 
-var container = document.getElementById('bubble-container');
-
 setInterval(function(){
     let singleBubble = createBubbles();
-    container.appendChild(singleBubble);
+    bubbleContainer.appendChild(singleBubble);
     setTimeout(function(){
         singleBubble.style.bottom = "800px";
     }, 100);
 }, 300)
+
+
 
 /*
 function getPosition(element)
