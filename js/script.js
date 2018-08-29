@@ -1,19 +1,18 @@
 let app = {};
 app.dom = {};
 
-app.initDom = function(){
+app.initDom = () => {
     app.dom.aquarium = document.getElementById('aquarium');
 }
 
-app.runAquarium = function(){
-
+app.runAquarium = () => {
     //loop animations
     setInterval(function() {
-      addFish(createRandomFishElement());
+      app.addFish(app.createRandomFishElement());
     }, 100);
 
     setInterval(function(){
-        let singleBubble = createBubbles();
+        let singleBubble = app.createBubble();
         app.dom.aquarium.appendChild(singleBubble);
         setTimeout(function(){
             singleBubble.style.bottom = "800px";
@@ -21,9 +20,7 @@ app.runAquarium = function(){
     }, 300)
 }
 
-
-
-function createBubbles(){
+app.createBubble = () => {
     let bubble = document.createElement('img');
 
     bubble.src = "./img/bubble.png";
@@ -41,7 +38,7 @@ function createBubbles(){
     return bubble;
 }
 
-function createRandomFishElement(){
+app.createRandomFishElement = () => {
     let fishImageList = ["bluefish.png", "purplefish.png"];
 
     let newFish = document.createElement('div');
@@ -53,10 +50,11 @@ function createRandomFishElement(){
 
     let speed = Math.floor(Math.random() * 9 + 4);
     newFish.style.transition = "all " + speed + "s ease-in";
+    //console.log(newFish);
     return newFish;
 }
 
-function addFish(newFish){
+app.addFish = (newFish) => {
     app.dom.aquarium.appendChild(newFish);
 
     //newFish.className += " active";
@@ -81,67 +79,9 @@ function addFish(newFish){
 
 }
 
-app.init = function() {
+app.init = () => {
     app.initDom();
-    app.runAquarium();
+    app.runAquarium()
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-function getPosition(element)
-{
-    var bound = element.getBoundingClientRect();
-    var html = document.documentElement;
-
-    return {
-        top: bound.top + window.pageYOffset - html.clientTop,
-        left: bound.left + window.pageXOffset - html.clientLeft
-    };
-}
-*/
-
-/*
-function generateBubbles(container){
-    var svgns = "http://www.w3.org/2000/svg";
-    for (var x = 0; x < container.clientWidth; x += 50) {
-        for (var y = 0; y < container.clientHeight; y += 50) {
-            let radius = Math.floor(Math.random() * 10);
-            let xOffset = Math.floor(Math.random() * 50 - 25);
-            let yOffset = Math.floor(Math.random() * 50 - 25);
-            console.log(radius)
-            var circle = document.createElementNS(svgns, 'circle');
-            circle.setAttributeNS(null, 'cx', x + xOffset);
-            circle.setAttributeNS(null, 'cy', y + yOffset);
-            circle.setAttributeNS(null, 'r', radius);
-
-            container.appendChild(circle);
-        }
-    }
-}
-
-create svg circles for bubbles
-generateBubbles(container);
-
-*/
+app.init();
