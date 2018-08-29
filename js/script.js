@@ -10,10 +10,20 @@ app.runAquarium = () => {
     //loop animations
     setInterval(function() {
       app.addFish(app.createRandomFishElement());
-    }, 100);
+  }, 200);
 
     setInterval(function(){
         let singleBubble = app.createBubble();
+
+        //add function to remove bubble from DOM after burst
+        //burst bubble
+        singleBubble.addEventListener('click', function(e){
+            this.style.transition = "all 0.5s ease-in-out";
+            this.style.opacity = 0;
+            this.style.transform = "scale(3)";
+
+        });
+
         app.dom.aquarium.appendChild(singleBubble);
         setTimeout(function(){
             singleBubble.style.bottom = "800px";
@@ -27,8 +37,20 @@ app.createBubble = () => {
     bubble.src = "./img/bubble.png";
     bubble.className = "bubble";
 
+    //from image source
+    let srcHeight = 68;
+    let srcWidth = 66;
+
+    //calculate variable height and width
     let width = Math.floor(Math.random() * 100 + 20);
     bubble.style.width = width +"px";
+    let factor = srcHeight/srcWidth;
+
+    let height = factor * width;
+    bubble.style.height = height +"px";
+
+    //begin bubble off screen so negative height
+    bubble.style.bottom = -height + "px";
 
     let left = Math.floor(Math.random() * 1000 + 200);
     bubble.style.left = left + "px";
@@ -38,7 +60,7 @@ app.createBubble = () => {
 
     //randomize whether bubble will be in front or behind fishImageList
     //z-index will either be 0 or 1
-    bubble.style.zIndex = Math.round(Math.random());;
+    bubble.style.zIndex = Math.round(Math.random());
 
     return bubble;
 }
@@ -47,6 +69,7 @@ app.createRandomFishElement = () => {
     let fishImageList = ["bluefish.png", "purplefish.png", "shark.png"];
     let newFish = document.createElement('div');
     newFish.className = "fish";
+
     //get random fish image
     let randomFish = fishImageList[Math.floor(Math.random()*fishImageList.length)];
     newFish.style.backgroundImage = "url('img/" + randomFish +"')";
@@ -60,14 +83,11 @@ app.createRandomFishElement = () => {
     //return 1 or 0, if 1 then flip fish
     let flipped = Math.round(Math.random());
     if (flipped == 0){
-        console.log("flipped", flipped);
         newFish.className = "flippedFish";
         //0px will be the right side of the browser because of the scaleX property
         newFish.style.transform = `translate(${app.dom.aquarium.clientWidth+width}px) scaleX(-1)`;
     }
 
-
-    //console.log(newFish);
     return newFish;
 }
 
@@ -99,16 +119,12 @@ app.addFish = (newFish) => {
         e.target.parentNode.removeChild(e.target);
     })
 
-    //click to remove fish
-    newFish.addEventListener('click', function(e){
-        e.target.parentNode.removeChild(e.target);
-    })
-
 }
 
 app.init = () => {
     app.initDom();
     app.runAquarium()
+    console.log(app.counter);
 }
 
 app.init();
