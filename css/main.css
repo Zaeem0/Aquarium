@@ -69,8 +69,12 @@ svg circle{
     height: 90px;
     width: 100%;
     position: absolute;
-    top: 0;
-    left: 0;
+    /*add dynamically
+    transform: translate(0px,20px);
+    --change to
+    transform: translate(0px, 1280px or aquarium.clientWidth );
+    transition: all 0.2s ease-in-out;
+    */
 }
 
 .flippedFish {
@@ -79,7 +83,11 @@ svg circle{
     height: 90px;
     width: 100%;
     position: absolute;
-    top: 0;
-    right: 0;
+    /*add dynamically
+    transform: translate(0px,1280px or aquarium.clientWidth );
+    --change to
+    transform: translate(0px, 0px );
+    transition: all 0.2s ease-in-out;
+    */
     transform: scaleX(-1);
 }

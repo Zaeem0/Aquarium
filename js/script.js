@@ -34,7 +34,7 @@ app.createBubble = () => {
     bubble.style.left = left + "px";
 
     let speed = Math.floor(Math.random() * 12 + 4);
-    bubble.style.transition = "all " + speed + "s ease-in";
+    bubble.style.transition = "transform " + speed + "s ease-in";
 
     return bubble;
 }
@@ -56,7 +56,7 @@ app.createRandomFishElement = () => {
     newFish.style.backgroundImage = "url('img/" + randomFish +"')";
 
     let speed = Math.floor(Math.random() * 9 + 4);
-    newFish.style.transition = "all " + speed + "s ease-in";
+    newFish.style.transition = "transform " + speed + "s ease-in";
     //console.log(newFish);
     return newFish;
 }
@@ -73,13 +73,13 @@ app.addFish = (newFish) => {
     //set right/left value for css transition on .fish/.flippedFish
     if(newFish.className == "flippedFish"){
         setTimeout(function(){
-            newFish.style.right = 1280+"px";
-            console.log(app.dom.aquarium.clientWidth);
+            newFish.style.transform = "translate(0px,0px)";
         },100);
     } else {
         setTimeout(function(){
-            newFish.style.left = app.dom.aquarium.clientWidth+"px";
-            console.log(app.dom.aquarium.clientWidth);
+            //changed
+            newFish.style.transform = `translate(${app.dom.aquarium.clientWidth}px)`
+            console.log("changed to transform", newFish.style.transform);
         },100);
     }
 
