@@ -7,5 +7,3 @@ bubble in front and behind fish
 
 
 scaleX(-1) to flip image
-
-transform-origin to position;

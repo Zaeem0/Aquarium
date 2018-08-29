@@ -45,6 +45,10 @@ app.createRandomFishElement = () => {
     let newFish = document.createElement('div');
     newFish.className = "fish";
 
+
+    let width = Math.floor(Math.random() * 50 + 60);
+    newFish.style.width = width +"px";
+
     //return 1 or 0, if 1 then flip fish
     let flipped = Math.round(Math.random());
     if (flipped == 0){
@@ -56,8 +60,6 @@ app.createRandomFishElement = () => {
     var randomFish = fishImageList[Math.floor(Math.random()*fishImageList.length)];
     newFish.style.backgroundImage = "url('img/" + randomFish +"')";
 
-    let speed = Math.floor(Math.random() * 9 + 4);
-    newFish.style.transition = "all " + speed + "s ease-in";
     //console.log(newFish);
     return newFish;
 }
@@ -68,8 +70,8 @@ app.addFish = (newFish) => {
     let top = Math.floor(Math.random() * 800);
     newFish.style.top = top +"px";
 
-    let height = Math.floor(Math.random() * 50 + 60);
-    newFish.style.height = height +"px";
+    let speed = Math.floor(Math.random() * 9 + 4);
+    newFish.style.transition = "all " + speed + "s ease-in";
 
     //set right/left value for css transition on .fish/.flippedFish
     if(newFish.className == "flippedFish"){

@@ -27,8 +27,8 @@ app.createBubble = () => {
     bubble.src = "./img/bubble.png";
     bubble.className = "bubble";
 
-    let height = Math.floor(Math.random() * 62 + 4);
-    bubble.style.height = height + "px";
+    let width = Math.floor(Math.random() * 100 + 20);
+    bubble.style.width = width +"px";
 
     let left = Math.floor(Math.random() * 1000 + 200);
     bubble.style.left = left + "px";
@@ -47,6 +47,15 @@ app.createRandomFishElement = () => {
     let fishImageList = ["bluefish.png", "purplefish.png", "shark.png"];
     let newFish = document.createElement('div');
     newFish.className = "fish";
+    //get random fish image
+    let randomFish = fishImageList[Math.floor(Math.random()*fishImageList.length)];
+    newFish.style.backgroundImage = "url('img/" + randomFish +"')";
+
+    //size the fish
+    let width = Math.floor(Math.random() * 120 + 30);
+    newFish.style.width = width +"px";
+
+    newFish.style.transform = `translate(-${width}px) scaleX(1)`;
 
     //return 1 or 0, if 1 then flip fish
     let flipped = Math.round(Math.random());
@@ -54,15 +63,10 @@ app.createRandomFishElement = () => {
         console.log("flipped", flipped);
         newFish.className = "flippedFish";
         //0px will be the right side of the browser because of the scaleX property
-        newFish.style.transform = `translate(0px) scaleX(-1)`
+        newFish.style.transform = `translate(${app.dom.aquarium.clientWidth+width}px) scaleX(-1)`;
     }
 
-    //get random fish image
-    var randomFish = fishImageList[Math.floor(Math.random()*fishImageList.length)];
-    newFish.style.backgroundImage = "url('img/" + randomFish +"')";
 
-    let speed = Math.floor(Math.random() * 9 + 4);
-    newFish.style.transition = "all " + speed + "s ease-in";
     //console.log(newFish);
     return newFish;
 }
@@ -73,20 +77,20 @@ app.addFish = (newFish) => {
     let top = Math.floor(Math.random() * 800);
     newFish.style.top = top +"px";
 
-    let height = Math.floor(Math.random() * 50 + 60);
-    newFish.style.height = height +"px";
+    let speed = Math.floor(Math.random() * 9 + 4);
 
+    newFish.style.transition = "all " + speed + "s ease-in";
     //set right/left value for css transition on .fish/.flippedFish
     if(newFish.className == "flippedFish"){
         setTimeout(function(){
             //moves fish from right to left
             //negative clientWidth will be the left side of the browser because of the scaleX property
-            newFish.style.transform = `translate(-${app.dom.aquarium.clientWidth}px) scaleX(-1)`
+            newFish.style.transform = `translate(-${app.dom.aquarium.clientWidth}px) scaleX(-1)`;
         },100);
     } else {
         setTimeout(function(){
             //moves fish from left to right
-            newFish.style.transform = `translate(${app.dom.aquarium.clientWidth}px)`
+            newFish.style.transform = `translate(${app.dom.aquarium.clientWidth}px) scaleX(1)`;
         },100);
     }
 
