@@ -1,6 +1,30 @@
+let app = {};
+app.dom = {};
+
+app.initDom = function(){
+    app.dom.aquarium = document.getElementById('aquarium');
+}
+
+app.runAquarium = function(){
+
+    //loop animations
+    setInterval(function() {
+      addFish(createRandomFishElement());
+    }, 100);
+
+    setInterval(function(){
+        let singleBubble = createBubbles();
+        app.dom.aquarium.appendChild(singleBubble);
+        setTimeout(function(){
+            singleBubble.style.bottom = "800px";
+        }, 100);
+    }, 300)
+}
+
+
 
 function createBubbles(){
-    var bubble = document.createElement('img');
+    let bubble = document.createElement('img');
 
     bubble.src = "./img/bubble.png";
     bubble.className = "bubble";
@@ -18,9 +42,9 @@ function createBubbles(){
 }
 
 function createRandomFishElement(){
-    var fishImageList = ["bluefish.png", "purplefish.png"];
+    let fishImageList = ["bluefish.png", "purplefish.png"];
 
-    var newFish = document.createElement('div');
+    let newFish = document.createElement('div');
     newFish.className = "fish";
 
     //get random fish image
@@ -33,7 +57,7 @@ function createRandomFishElement(){
 }
 
 function addFish(newFish){
-    aquarium.appendChild(newFish);
+    app.dom.aquarium.appendChild(newFish);
 
     //newFish.className += " active";
     let top = Math.floor(Math.random() * 800);
@@ -43,7 +67,7 @@ function addFish(newFish){
     newFish.style.height = height +"px";
 
     setTimeout(function(){
-        newFish.style.left = aquarium.clientWidth+"px";
+        newFish.style.left = app.dom.aquarium.clientWidth+"px";
     },100);
 
     newFish.addEventListener('transitionend', function(e){
@@ -57,22 +81,31 @@ function addFish(newFish){
 
 }
 
-var aquarium = document.getElementById('aquarium');
-var bubbleContainer = document.createElement('div');
-bubbleContainer.classList.add("bubble-container");
-aquarium.appendChild(bubbleContainer);
+app.init = function() {
+    app.initDom();
+    app.runAquarium();
+}
 
-setInterval(function() {
-  addFish(createRandomFishElement());
-}, 100);
 
-setInterval(function(){
-    let singleBubble = createBubbles();
-    bubbleContainer.appendChild(singleBubble);
-    setTimeout(function(){
-        singleBubble.style.bottom = "800px";
-    }, 100);
-}, 300)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
