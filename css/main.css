@@ -59,10 +59,6 @@ svg circle{
     bottom: -70px;
 }
 
-.bubble-container{
-    z-index: 9999;
-}
-
 .fish {
     background-size: contain;
     background-repeat: no-repeat;
@@ -89,5 +85,5 @@ svg circle{
     transform: translate(0px, 0px );
     transition: all 0.2s ease-in-out;
     */
-    
+
 }
