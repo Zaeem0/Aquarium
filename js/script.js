@@ -1,4 +1,5 @@
 let app = {};
+
 app.dom = {};
 
 app.initDom = () => {
@@ -40,9 +41,15 @@ app.createBubble = () => {
 
 app.createRandomFishElement = () => {
     let fishImageList = ["bluefish.png", "purplefish.png"];
-
     let newFish = document.createElement('div');
     newFish.className = "fish";
+
+    //return 1 or 0, if 1 then flip fish
+    let flipped = Math.round(Math.random());
+    if (flipped == 0){
+        console.log("flipped", flipped);
+        newFish.className = "flippedFish";
+    }
 
     //get random fish image
     var randomFish = fishImageList[Math.floor(Math.random()*fishImageList.length)];
@@ -57,16 +64,24 @@ app.createRandomFishElement = () => {
 app.addFish = (newFish) => {
     app.dom.aquarium.appendChild(newFish);
 
-    //newFish.className += " active";
     let top = Math.floor(Math.random() * 800);
     newFish.style.top = top +"px";
 
     let height = Math.floor(Math.random() * 50 + 60);
     newFish.style.height = height +"px";
 
-    setTimeout(function(){
-        newFish.style.left = app.dom.aquarium.clientWidth+"px";
-    },100);
+    //set right/left value for css transition on .fish/.flippedFish
+    if(newFish.className == "flippedFish"){
+        setTimeout(function(){
+            newFish.style.right = 1280+"px";
+            console.log(app.dom.aquarium.clientWidth);
+        },100);
+    } else {
+        setTimeout(function(){
+            newFish.style.left = app.dom.aquarium.clientWidth+"px";
+            console.log(app.dom.aquarium.clientWidth);
+        },100);
+    }
 
     newFish.addEventListener('transitionend', function(e){
         e.target.parentNode.removeChild(e.target);
