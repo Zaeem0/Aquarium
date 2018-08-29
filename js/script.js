@@ -1,5 +1,6 @@
 function createBubbles(){
     var bubble = document.createElement('img');
+
     bubble.src = "./img/bubble.png";
     bubble.className = "bubble";
 
@@ -15,10 +16,9 @@ function createBubbles(){
     return bubble;
 }
 
-
 function createRandomFishElement(){
     var fishImageList = ["bluefish.png", "purplefish.png"];
-
+    
     var newFish = document.createElement('div');
     newFish.className = "fish";
 
