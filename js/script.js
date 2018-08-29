@@ -34,7 +34,7 @@ app.createBubble = () => {
     bubble.style.left = left + "px";
 
     let speed = Math.floor(Math.random() * 12 + 4);
-    bubble.style.transition = "transform " + speed + "s ease-in";
+    bubble.style.transition = "all " + speed + "s ease-in";
 
     return bubble;
 }
@@ -49,6 +49,7 @@ app.createRandomFishElement = () => {
     if (flipped == 0){
         console.log("flipped", flipped);
         newFish.className = "flippedFish";
+        newFish.style.transform = `translate(0px) scaleX(-1)`
     }
 
     //get random fish image
@@ -56,7 +57,7 @@ app.createRandomFishElement = () => {
     newFish.style.backgroundImage = "url('img/" + randomFish +"')";
 
     let speed = Math.floor(Math.random() * 9 + 4);
-    newFish.style.transition = "transform " + speed + "s ease-in";
+    newFish.style.transition = "all " + speed + "s ease-in";
     //console.log(newFish);
     return newFish;
 }
@@ -73,7 +74,7 @@ app.addFish = (newFish) => {
     //set right/left value for css transition on .fish/.flippedFish
     if(newFish.className == "flippedFish"){
         setTimeout(function(){
-            newFish.style.transform = "translate(0px,0px)";
+            newFish.style.transform = `translate(-${app.dom.aquarium.clientWidth}px) scaleX(-1)`
         },100);
     } else {
         setTimeout(function(){

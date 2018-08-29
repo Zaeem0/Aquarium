@@ -89,5 +89,5 @@ svg circle{
     transform: translate(0px, 0px );
     transition: all 0.2s ease-in-out;
     */
-    transform: scaleX(-1);
+    
 }
